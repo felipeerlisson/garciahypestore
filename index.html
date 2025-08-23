@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Catálogo de Tênis</title>
+
+    <!-- Bootstrap + Icons -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css"
+      rel="stylesheet"
+    />
+
+    <style>
+      /* Reset e Tema dark */
+      body {
+        background-color: #0f0f0f;
+        color: #fff;
+        font-family: "Segoe UI", sans-serif;
+        margin: 0;
+        padding: 0;
+      }
+
+      /* Navbar flutuante preta com blur */
+      .floating-navbar {
+        position: fixed;
+        top: 20px;
+        left: 50%;
+        transform: translateX(-50%);
+        z-index: 1000;
+        width: 90%;
+        background: rgba(0, 0, 0, 0.7);
+        border-radius: 1rem;
+        padding: 0.5rem 1rem;
+        backdrop-filter: blur(10px);
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6);
+      }
+
+      .navbar .nav-link {
+        color: #fff !important;
+        font-weight: 500;
+      }
+
+      .navbar .nav-link:hover {
+        color: #a84ba8 !important;
+      }
+
+      /* Hero com background-image */
+      .hero {
+        position: relative;
+        min-height: 100vh;
+        background-image: url("https://imagedelivery.net/zeXhra0JeU7Z6pD0rkNTDg/dba74f3b-d33f-463d-6662-cb4cbd819e00/public");
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        padding: 6rem 2rem 4rem;
+      }
+
+      .hero .col-md-6.text-start {
+        padding-left: 0;
+        margin-left: 1rem;
+        text-align: left;
+      }
+
+      .hero h1 {
+        color: #000 !important;
+        font-size: 4rem;
+        font-weight: 800;
+        text-align: left;
+        text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+      }
+
+      .h1dunkpanda {
+        color: #000 !important;
+        font-size: 4rem;
+        font-weight: 980;
+        text-align: left;
+        text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+      }
+
+      .hero p {
+        color: #000 !important;
+        font-size: 1.5rem;
+        max-width: 600px;
+        margin: 1rem 0 0 0;
+        text-align: left;
+      }
+
+      .hero a.btn {
+        font-size: 1.5rem;
+        padding: 0.75rem 2.5rem;
+        color: #fff !important; /* texto branco */
+        background-color: #000; /* fundo preto */
+        border: none;
+        font-weight: 600;
+        margin-left: 0;
+        text-align: left;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: background-color 0.3s ease, color 0.3s ease;
+      }
+
+      .hero a.btn:hover {
+        background-color: #8b1e8b;
+        color: #fff !important;
+      }
+
+      @media (max-width: 767px) {
+        .hero {
+          background-position: center top;
+          background-size: contain;
+        }
+      }
+
+      /* Categorias e Produtos */
+      .categories img,
+      .product-card img {
+        width: 100%;
+        border-radius: 0.5rem;
+        object-fit: cover;
+      }
+
+      .product-card {
+        background-color: #1a1a1a;
+        border: none;
+        color: #fff;
+      }
+
+      .product-card .btn {
+        border-color: #fff;
+        color: #fff;
+      }
+
+      .product-card .btn:hover {
+        background-color: #fff;
+        color: #000;
+      }
+
+      /* Carrossel Marcas */
+      .brands-carousel img {
+        width: 60px;
+        height: 60px;
+        object-fit: contain; /* Mantém proporção original */
+        border-radius: 50%;
+        background-color: #fff;
+        padding: 8px; /* Mais espaço interno */
+        border: 2px solid #fff;
+        transition: transform 0.3s ease;
+      }
+
+      .brands-carousel img:hover {
+        transform: scale(1.1);
+      }
+
+      /* Footer */
+      .footer {
+        padding: 2rem 0;
+        text-align: center;
+        background-color: #111;
+        color: #888;
+        font-size: 0.9rem;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark floating-navbar">
+      <div
+        class="container-fluid d-flex justify-content-between align-items-center"
+      >
+        <a class="navbar-brand fw-bold" href="#">BIGJOY TESTE</a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navMenu"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navMenu">
+          <ul class="navbar-nav">
+            <li class="nav-item dropdown">
+              <a
+                class="nav-link dropdown-toggle"
+                href="index.html"
+                role="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                Categorias
+              </a>
+              <ul class="dropdown-menu dropdown-menu-dark">
+                <li>
+                  <a class="dropdown-item" href="adidassamba.html">Adidas Samba</a>
+                </li>
+                <li>
+                  <a class="dropdown-item" href="adidassuperstar.html"
+                    >Adidas Superstar</a
+                  >
+                </li>
+                <li>
+                  <a class="dropdown-item" href="airforce1.html">Air Force 1</a>
+                </li>
+                <li>
+                  <a class="dropdown-item" href="airjordan1.html"
+                    >Air Jordan 1 Low</a
+                  >
+                </li>
+                <li>
+                  <a class="dropdown-item" href="#air-max-95">Air Max 95</a>
+                </li>
+                <li>
+                  <a class="dropdown-item" href="#asics-gel-kayano"
+                    >Asics Gel Kayano</a
+                  >
+                </li>
+                <li>
+                  <a class="dropdown-item" href="#asics-gel-nyc"
+                    >Asics Gel NYC</a
+                  >
+                </li>
+                <li><a class="dropdown-item" href="#chinelos">Chinelos</a></li>
+                <li>
+                  <a class="dropdown-item" href="#dunk-sb-low">Dunk SB Low</a>
+                </li>
+                <li><a class="dropdown-item" href="#jordan-4">Jordan 4</a></li>
+                <li>
+                  <a class="dropdown-item" href="#maison-mihara-yasuhiro"
+                    >Maison Mihara Yasuhiro</a
+                  >
+                </li>
+                <li>
+                  <a class="dropdown-item" href="#new-balance-530"
+                    >New Balance 530</a
+                  >
+                </li>
+                <li>
+                  <a class="dropdown-item" href="#new-balance-550"
+                    >New Balance 550</a
+                  >
+                </li>
+                <li>
+                  <a class="dropdown-item" href="#new-balance-740"
+                    >New Balance 740</a
+                  >
+                </li>
+                <li>
+                  <a class="dropdown-item" href="#new-balance-9060"
+                    >New Balance 9060</a
+                  >
+                </li>
+                <li>
+                  <a class="dropdown-item" href="#nike-air-max-dn"
+                    >Nike Air Max DN</a
+                  >
+                </li>
+                <li>
+                  <a class="dropdown-item" href="#nike-air-max-tn"
+                    >Nike Air Max TN</a
+                  >
+                </li>
+                <li>
+                  <a class="dropdown-item" href="#nike-air-vapormax-flyknit"
+                    >Nike Air Vapormax Flyknit</a
+                  >
+                </li>
+                <li>
+                  <a class="dropdown-item" href="#off-white">Off-White</a>
+                </li>
+              </ul>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#marcas">Marcas</a>
+            </li>
+
+            <li class="nav-item"><a class="nav-link" href="#">Cupons</a></li>
+            <li class="nav-item"><a class="nav-link" href="#">Notícias</a></li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Contato</a>
+            </li>
+          </ul>
+
+   <div class="collapse navbar-collapse justify-content-end" id="navMenu">         
+     <form class="d-flex me-3" role="search">
+            <input
+              class="form-control form-control-sm"
+              type="search"
+              placeholder="Drops, produtos ou marcas"
+              aria-label="Search"
+              style="background: #1a1a1a; border: none; color: #ccc"
+            />
+          </form>
+          <div class="d-flex align-items-center gap-3">
+            <i
+              class="bi bi-cart3 fs-5"
+              style="color: #ccc; cursor: pointer"
+            ></i>
+            <i class="bi bi-bell fs-5" style="color: #ccc; cursor: pointer"></i>
+            <img
+            width="30px"
+            height="30px"
+              src="img/desert.jpg"
+              alt="Usuário"
+              style="border-radius: 50%; cursor: pointer"
+            />
+            </div>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Hero Banner -->
+    <section
+      class="hero d-flex align-items-center text-white"
+      style="
+        background: url('img/bckpanda.png') center center / cover no-repeat;
+        height: 100vh;
+      "
+    >
+      <div class="container">
+        <div class="row">
+          <div class="col-md-6 text-start">
+            <h1 class="display-4 fw-bold text-shadow">
+              <span class="h1dunkpanda">NIKE DUNK LOW</span> "PANDA"
+            </h1>
+            <a
+              href="#produtos"
+              class="btn btn-dark btn-lg px-4 py-2 fw-semibold"
+            >
+              Disponível Agora <i class="bi bi-arrow-right ms-2"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Categorias -->
+    <section class="py-5 categories" id="categories">
+      <div class="container">
+        <h2 class="mb-4">Categorias</h2>
+        <div class="row text-center">
+          <div class="col-6 col-md-3 mb-4">
+            <img
+              src="https://static.nike.com/a/images/f_auto/dpr_1.0/h_500,c_limit/7d3781a7-e6c1-4db4-81e4-d780bced5e54/nike-air-max-plus-og-volta.jpg"
+              alt="Sneakers"
+            />
+            <p class="mt-2">Sneakers</p>
+          </div>
+          <div class="col-6 col-md-3 mb-4">
+            <img
+              src="https://www.stussy.com/cdn/shop/products/114169_BLACK_1_1200x.jpg?v=1684889797"
+              alt="Streetwear"
+            />
+            <p class="mt-2">Streetwear</p>
+          </div>
+          <div class="col-6 col-md-3 mb-4">
+            <img
+              src="https://cdn-images.farfetch-contents.com/20/03/03/18/20030318_44121494_1000.jpg"
+              alt="Luxo"
+            />
+            <p class="mt-2">Luxo</p>
+          </div>
+          <div class="col-6 col-md-3 mb-4">
+            <img
+              src="https://upload.wikimedia.org/wikipedia/en/thumb/e/e1/1999_Pokemon_card_Blastoise.jpg/220px-1999_Pokemon_card_Blastoise.jpg"
+              alt="Colecionáveis"
+            />
+            <p class="mt-2">Colecionáveis</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Carrossel de Marcas -->
+    <section class="py-3 brands-carousel bg-dark" id="marcas">
+      <div class="container d-flex flex-nowrap overflow-auto gap-4 py-3">
+        <img src="img/adidas-seeklogo.png" alt="Adidas" title="Adidas" />
+        <img src="img/asics-seeklogo.png" alt="Asics" title="Asics" />
+        <img src="img/crocs-shoes-seeklogo.png" alt="Crocs" title="Crocs" />
+        <img src="img/mmy.png" alt="MMY" title="MMY" />
+        <img src="img/new-balance.png" alt="New Balance" title="New Balance" />
+        <img src="img/nike-logo.png" alt="Nike" title="Nike" />
+      </div>
+    </section>
+
+    <!-- Produtos em Destaque -->
+    <section class="py-5">
+      <div class="container">
+        <h2 class="mb-4">Produtos em Destaque</h2>
+        <div class="row g-4">
+          <div class="col-6 col-md-4 col-lg-3">
+            <div class="card product-card">
+              <img
+                src="https://images.stockx.com/images/adidas-Yeezy-Boost-350-V2-Onyx-Product.jpg"
+                class="card-img-top"
+                alt="Yeezy Onyx"
+              />
+              <div class="card-body">
+                <h5 class="card-title">Yeezy Boost 350 V2 Onyx</h5>
+                <p class="card-text">R$ 1.499,00</p>
+                <a href="#" class="btn btn-outline-light btn-sm">Ver mais</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-6 col-md-4 col-lg-3">
+            <div class="card product-card">
+              <img
+                src="https://images.stockx.com/images/Air-Jordan-1-Retro-High-OG-University-Blue-Product.jpg"
+                class="card-img-top"
+                alt="Jordan 1"
+              />
+              <div class="card-body">
+                <h5 class="card-title">Air Jordan 1 University Blue</h5>
+                <p class="card-text">R$ 1.799,00</p>
+                <a href="#" class="btn btn-outline-light btn-sm">Ver mais</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-6 col-md-4 col-lg-3">
+            <div class="card product-card">
+              <img
+                src="https://images.stockx.com/images/Nike-Dunk-Low-Black-White-Product.jpg"
+                class="card-img-top"
+                alt="Dunk Panda"
+              />
+              <div class="card-body">
+                <h5 class="card-title">Nike Dunk Low Panda</h5>
+                <p class="card-text">R$ 999,00</p>
+                <a href="#" class="btn btn-outline-light btn-sm">Ver mais</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-6 col-md-4 col-lg-3">
+            <div class="card product-card">
+              <img
+                src="https://images.stockx.com/images/Nike-Air-Max-Plus-TN-Triple-Black.jpg"
+                class="card-img-top"
+                alt="Air Max Plus TN"
+              />
+              <div class="card-body">
+                <h5 class="card-title">Air Max Plus TN Black</h5>
+                <p class="card-text">R$ 1.199,00</p>
+                <a href="#" class="btn btn-outline-light btn-sm">Ver mais</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Rodapé -->
+    <footer class="footer">
+      <div class="container">
+        <p>&copy; 2025 BigJoy TESTE. Todos os direitos reservados.</p>
+      </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>
