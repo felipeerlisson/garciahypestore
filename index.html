@@ -3,7 +3,10 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Catálogo de Tênis</title>
+       <title>GarciaHype Store</title>
+    <link rel="icon" href="img/favicon.png" type="image/x-icon">
+  <!-- Favicon -->
+    <link rel="icon" href="img/favicon.png" type="image/x-icon">
 
     <!-- Bootstrap + Icons -->
     <link
@@ -20,6 +23,23 @@
     />
 
     <style>
+
+      @font-face {
+  font-family: 'Dot Zero';
+  src: url('font/DotZeroExtrude.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Eurostileround Heavy';
+  src: url('font/eurostile-round-heavy.otf') format('truetype');
+  font-weight: bold;
+  font-style: normal;
+}
+
+
+
       /* Reset e Tema dark */
       body {
         background-color: #0f0f0f;
@@ -50,80 +70,122 @@
       }
 
       .navbar .nav-link:hover {
-        color: #a84ba8 !important;
+        color: #009DB2 !important;
       }
+.garcia-text {
+  font-family: 'Dot Zero', sans-serif; /* GarciaHype */
+  font-weight: bold;
+  font-size: 44px;
+  background: linear-gradient(90deg, #0ff 0%, #0085A2 25%, #0ff 50%, #0085A2 75%, #0ff 100%);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: aurora 4s linear infinite;
+  display: inline-block;
+}
 
-      /* Hero com background-image */
-      .hero {
-        position: relative;
-        min-height: 100vh;
-        background-image: url("https://imagedelivery.net/zeXhra0JeU7Z6pD0rkNTDg/dba74f3b-d33f-463d-6662-cb4cbd819e00/public");
-        background-size: cover;
-        background-position: center;
-        background-repeat: no-repeat;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        text-align: center;
-        padding: 6rem 2rem 4rem;
-      }
+.store-text {
+  font-family: 'Eurostileround Heavy', sans-serif; /* Store */
+  font-size: 22px;
+  font-weight: bold;
+  color: #0085A2; /* cor sólida igual ao gradiente */
+  margin-left: -5px; /* ajusta espaçamento */
+}
 
-      .hero .col-md-6.text-start {
-        padding-left: 0;
-        margin-left: 1rem;
-        text-align: left;
-      }
+@keyframes aurora {
+  0% { background-position: 0% center; }
+  100% { background-position: 200% center; }
+}
 
-      .hero h1 {
-        color: #000 !important;
-        font-size: 4rem;
-        font-weight: 800;
-        text-align: left;
-        text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
-      }
 
-      .h1dunkpanda {
-        color: #000 !important;
-        font-size: 4rem;
-        font-weight: 980;
-        text-align: left;
-        text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
-      }
 
-      .hero p {
-        color: #000 !important;
-        font-size: 1.5rem;
-        max-width: 600px;
-        margin: 1rem 0 0 0;
-        text-align: left;
-      }
 
-      .hero a.btn {
-        font-size: 1.5rem;
-        padding: 0.75rem 2.5rem;
-        color: #fff !important; /* texto branco */
-        background-color: #000; /* fundo preto */
-        border: none;
-        font-weight: 600;
-        margin-left: 0;
-        text-align: left;
-        display: inline-flex;
-        align-items: center;
-        gap: 0.5rem;
-        transition: background-color 0.3s ease, color 0.3s ease;
-      }
+/* Hero com background-image */
+.hero {
+  position: relative;
+  min-height: 100vh;
+  background-image: url("https://imagedelivery.net/zeXhra0JeU7Z6pD0rkNTDg/dba74f3b-d33f-463d-6662-cb4cbd819e00/public");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start; /* mantém alinhado à esquerda */
+  padding: 6rem 2rem 4rem;
+  text-align: left;
+}
 
-      .hero a.btn:hover {
-        background-color: #8b1e8b;
-        color: #fff !important;
-      }
+/* Conteúdo alinhado à esquerda */
+.hero .col-md-6 {
+  margin-left: 1rem;
+}
 
-      @media (max-width: 767px) {
-        .hero {
-          background-position: center top;
-          background-size: contain;
-        }
-      }
+/* Título */
+.hero h1,
+.h1dunkpanda {
+  color: #000 !important;
+  font-weight: 800;
+  font-size: 4rem;
+  line-height: 1.2;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+/* Texto auxiliar */
+.hero p {
+  color: #000 !important;
+  font-size: 1.5rem;
+  max-width: 600px;
+  margin: 1rem 0 0 0;
+}
+
+/* Botão */
+.hero a.btn {
+  font-size: 1.5rem;
+  padding: 0.75rem 2.5rem;
+  color: #fff !important;
+  background-color: #000;
+  border: none;
+  font-weight: 600;
+  margin-top: 1rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.hero a.btn:hover {
+  background-color: #009DB2;
+  color: #fff !important;
+}
+
+/* Responsividade */
+@media (max-width: 991px) {
+  .hero h1,
+  .h1dunkpanda {
+    font-size: 3rem;
+  }
+}
+
+@media (max-width: 767px) {
+  .hero {
+    background-position: center top;
+    background-size: contain;
+    padding: 4rem 1rem;
+  }
+
+  .hero h1,
+  .h1dunkpanda {
+    font-size: 1.8rem;
+    line-height: 1.3;
+    margin-left: 0.5rem;
+  }
+
+  .hero a.btn {
+    font-size: 1rem;
+    padding: 0.6rem 1.2rem;
+    margin-left: 0.5rem;
+  }
+}
 
       /* Categorias e Produtos */
       .categories img,
@@ -148,6 +210,20 @@
         background-color: #fff;
         color: #000;
       }
+
+      .categories img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 0.5rem;
+}
+
+@media (min-width: 768px) {
+  .categories img {
+    height: 220px; /* aumenta a altura em telas maiores */
+  }
+}
+
 
       /* Carrossel Marcas */
       .brands-carousel img {
@@ -181,7 +257,11 @@
       <div
         class="container-fluid d-flex justify-content-between align-items-center"
       >
-        <a class="navbar-brand fw-bold" href="#">BIGJOY TESTE</a>
+<a class="navbar-brand" href="index.html">
+  <span class="garcia-text">garciAHYpe</span>
+  <span class="store-text">Store</span>
+</a>
+
         <button
           class="navbar-toggler"
           type="button"
@@ -225,6 +305,11 @@
                     >Air Jordan 1 Low</a
                   >
                 </li>
+
+               <li>
+                <a class="dropdown-item" href="airjordan4.html">Air Jordan 4</a>
+               </li>
+
                 <li>
                   <a class="dropdown-item" href="airmax95.html">Air Max 95</a>
                 </li>
@@ -248,9 +333,8 @@
                 <li>
                   <a class="dropdown-item" href="dunksblow.html">Dunk SB Low</a>
                 </li>
-                <li><a class="dropdown-item" href="#jordan-4">Jordan 4</a></li>
                 <li>
-                  <a class="dropdown-item" href="#maison-mihara-yasuhiro"
+                  <a class="dropdown-item" href="mmy.html"
                     >Maison Mihara Yasuhiro</a
                   >
                 </li>
@@ -310,7 +394,7 @@
             <input
               class="form-control form-control-sm"
               type="search"
-              placeholder="Drops, produtos ou marcas"
+              placeholder="marcas, cor ou tamanho"
               aria-label="Search"
               style="background: #1a1a1a; border: none; color: #ccc"
             />
@@ -348,7 +432,7 @@
               <span class="h1dunkpanda">NIKE DUNK LOW</span> "PANDA"
             </h1>
             <a
-              href="#produtos"
+              href="dunksblow.html"
               class="btn btn-dark btn-lg px-4 py-2 fw-semibold"
             >
               Disponível Agora <i class="bi bi-arrow-right ms-2"></i>
@@ -365,14 +449,14 @@
         <div class="row text-center">
           <div class="col-6 col-md-3 mb-4">
             <img
-              src="https://static.nike.com/a/images/f_auto/dpr_1.0/h_500,c_limit/7d3781a7-e6c1-4db4-81e4-d780bced5e54/nike-air-max-plus-og-volta.jpg"
+              src="img/NewBalanceNB9060.jpg"
               alt="Sneakers"
             />
             <p class="mt-2">Sneakers</p>
           </div>
           <div class="col-6 col-md-3 mb-4">
             <img
-              src="https://www.stussy.com/cdn/shop/products/114169_BLACK_1_1200x.jpg?v=1684889797"
+              src="img/new-balance.png"
               alt="Streetwear"
             />
             <p class="mt-2">Streetwear</p>
@@ -415,12 +499,12 @@
           <div class="col-6 col-md-4 col-lg-3">
             <div class="card product-card">
               <img
-                src="https://images.stockx.com/images/adidas-Yeezy-Boost-350-V2-Onyx-Product.jpg"
+                src="img/"
                 class="card-img-top"
                 alt="Yeezy Onyx"
               />
               <div class="card-body">
-                <h5 class="card-title">Yeezy Boost 350 V2 Onyx</h5>
+                <h5 class="card-title">New Balance NB9060</h5>
                 <p class="card-text">R$ 1.499,00</p>
                 <a href="#" class="btn btn-outline-light btn-sm">Ver mais</a>
               </div>
