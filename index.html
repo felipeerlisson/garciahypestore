@@ -3,10 +3,10 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-       <title>GarciaHype Store</title>
-    <link rel="icon" href="img/favicon.png" type="image/x-icon">
-  <!-- Favicon -->
-    <link rel="icon" href="img/favicon.png" type="image/x-icon">
+    <title>GarciaHype Store</title>
+    <link rel="icon" href="img/favicon.png" type="image/x-icon" />
+    <!-- Favicon -->
+    <link rel="icon" href="img/favicon.png" type="image/x-icon" />
 
     <!-- Bootstrap + Icons -->
     <link
@@ -23,22 +23,19 @@
     />
 
     <style>
+      @font-face {
+        font-family: "Dot Zero";
+        src: url("font/DotZeroExtrude.ttf") format("truetype");
+        font-weight: normal;
+        font-style: normal;
+      }
 
       @font-face {
-  font-family: 'Dot Zero';
-  src: url('font/DotZeroExtrude.ttf') format('truetype');
-  font-weight: normal;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: 'Eurostileround Heavy';
-  src: url('font/eurostile-round-heavy.otf') format('truetype');
-  font-weight: bold;
-  font-style: normal;
-}
-
-
+        font-family: "Eurostileround Heavy";
+        src: url("font/eurostile-round-heavy.otf") format("truetype");
+        font-weight: bold;
+        font-style: normal;
+      }
 
       /* Reset e Tema dark */
       body {
@@ -70,122 +67,217 @@
       }
 
       .navbar .nav-link:hover {
-        color: #009DB2 !important;
+        color: #009db2 !important;
       }
-.garcia-text {
-  font-family: 'Dot Zero', sans-serif; /* GarciaHype */
-  font-weight: bold;
-  font-size: 44px;
-  background: linear-gradient(90deg, #0ff 0%, #0085A2 25%, #0ff 50%, #0085A2 75%, #0ff 100%);
-  background-size: 200% auto;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  animation: aurora 4s linear infinite;
-  display: inline-block;
-}
+      .garcia-text {
+        font-family: "Dot Zero", sans-serif; /* GarciaHype */
+        font-weight: bold;
+        font-size: 44px;
+        background: linear-gradient(
+          90deg,
+          #0ff 0%,
+          #0085a2 25%,
+          #0ff 50%,
+          #0085a2 75%,
+          #0ff 100%
+        );
+        background-size: 200% auto;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        animation: aurora 4s linear infinite;
+        display: inline-block;
+      }
 
-.store-text {
-  font-family: 'Eurostileround Heavy', sans-serif; /* Store */
-  font-size: 22px;
-  font-weight: bold;
-  color: #0085A2; /* cor sólida igual ao gradiente */
-  margin-left: -5px; /* ajusta espaçamento */
-}
+      .store-text {
+        font-family: "Eurostileround Heavy", sans-serif; /* Store */
+        font-size: 22px;
+        font-weight: bold;
+        color: #0085a2; /* cor sólida igual ao gradiente */
+        margin-left: -5px; /* ajusta espaçamento */
+      }
 
-@keyframes aurora {
-  0% { background-position: 0% center; }
-  100% { background-position: 200% center; }
-}
+      @keyframes aurora {
+        0% {
+          background-position: 0% center;
+        }
+        100% {
+          background-position: 200% center;
+        }
+      }
 
+      /* Ajuste responsivo para a logo no mobile */
+      @media (max-width: 768px) {
+        .garcia-text {
+          font-size: 28px; /* menor que 44px */
+        }
 
+        .store-text {
+          font-size: 16px; /* menor que 22px */
+          margin-left: -2px; /* ajusta espaço */
+        }
+      }
 
+      /* Hero Desktop */
+      .hero {
+        position: relative;
+        min-height: 100vh; /* altura mínima igual a tela */
+        background: url("img/bck2.png") center / cover no-repeat;
+        display: flex;
+        align-items: center;
+        padding: 6rem 2rem 4rem;
+        text-align: left;
+        overflow: hidden; /* evita scroll lateral se houver overflow */
+      }
 
-/* Hero com background-image */
-.hero {
-  position: relative;
-  min-height: 100vh;
-  background-image: url("https://imagedelivery.net/zeXhra0JeU7Z6pD0rkNTDg/dba74f3b-d33f-463d-6662-cb4cbd819e00/public");
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  display: flex;
-  align-items: center;
-  justify-content: flex-start; /* mantém alinhado à esquerda */
-  padding: 6rem 2rem 4rem;
-  text-align: left;
-}
+      /* Título */
+      .hero-title {
+        color: #000;
+        font-weight: 800;
+        font-size: 4rem;
+        line-height: 1.2;
+        text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+        margin: 0;
+      }
 
-/* Conteúdo alinhado à esquerda */
-.hero .col-md-6 {
-  margin-left: 1rem;
-}
+      /* Botão */
+      .btn-hero {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        margin-top: 1rem;
+        padding: 0.75rem 2.5rem;
+        font-size: 1.5rem;
+        font-weight: 600;
+        color: #fff;
+        background-color: #000;
+        border: none;
+        text-decoration: none;
+        transition: background-color 0.3s ease;
+      }
 
-/* Título */
-.hero h1,
-.h1dunkpanda {
-  color: #000 !important;
-  font-weight: 800;
-  font-size: 4rem;
-  line-height: 1.2;
-  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
-}
+      .btn-hero:hover {
+        background-color: #009db2;
+        color: #fff;
+      }
 
-/* Texto auxiliar */
-.hero p {
-  color: #000 !important;
-  font-size: 1.5rem;
-  max-width: 600px;
-  margin: 1rem 0 0 0;
-}
+      /* Responsividade */
+      @media (max-width: 991px) {
+        .hero-title {
+          font-size: 3rem;
+        }
+      }
 
-/* Botão */
-.hero a.btn {
-  font-size: 1.5rem;
-  padding: 0.75rem 2.5rem;
-  color: #fff !important;
-  background-color: #000;
-  border: none;
-  font-weight: 600;
-  margin-top: 1rem;
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  transition: background-color 0.3s ease, color 0.3s ease;
-}
+      /* Mobile: mantém sua configuração atual, limpa duplicações */
+      @media (max-width: 767px) {
+        .hero {
+          min-height: auto; /* altura depende do conteúdo */
+          padding: 2rem 1rem 1rem; /* padding reduzido */
+          background: none; /* remove background do desktop */
+          flex-direction: column; /* empilha conteúdo verticalmente */
+          text-align: center; /* centraliza texto */
+        }
 
-.hero a.btn:hover {
-  background-color: #009DB2;
-  color: #fff !important;
-}
+        /* Hero imagem mobile */
+        .hero::before {
+          content: "";
+          display: block;
+          width: 100%;
+          height: auto;
+          padding-top: 100%; /* mantém proporção aproximada */
+          background: url("img/hero_banner_mobile2.png") top / contain no-repeat;
+        }
 
-/* Responsividade */
-@media (max-width: 991px) {
-  .hero h1,
-  .h1dunkpanda {
-    font-size: 3rem;
-  }
-}
+        .hero-title {
+          font-size: 2rem;
+          line-height: 1.3;
+        }
 
-@media (max-width: 767px) {
-  .hero {
-    background-position: center top;
-    background-size: contain;
-    padding: 4rem 1rem;
-  }
+        .btn-hero {
+          font-size: 1rem;
+          padding: 0.6rem 1.2rem;
+        }
+      }
+      /* Hero Desktop */
+      .hero {
+        position: relative;
+        min-height: 100vh; /* altura mínima igual a tela */
+        background: url("img/bck2.png") center / cover no-repeat;
+        display: flex;
+        align-items: center;
+        padding: 6rem 2rem 4rem;
+        text-align: left;
+        overflow: hidden; /* evita scroll lateral se houver overflow */
+      }
 
-  .hero h1,
-  .h1dunkpanda {
-    font-size: 1.8rem;
-    line-height: 1.3;
-    margin-left: 0.5rem;
-  }
+      /* Título */
+      .hero-title {
+        color: #000;
+        font-weight: 800;
+        font-size: 4rem;
+        line-height: 1.2;
+        text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+        margin: 0;
+      }
 
-  .hero a.btn {
-    font-size: 1rem;
-    padding: 0.6rem 1.2rem;
-    margin-left: 0.5rem;
-  }
-}
+      /* Botão */
+      .btn-hero {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        margin-top: 1rem;
+        padding: 0.75rem 2.5rem;
+        font-size: 1.5rem;
+        font-weight: 600;
+        color: #fff;
+        background-color: #000;
+        border: none;
+        text-decoration: none;
+        transition: background-color 0.3s ease;
+      }
+
+      .btn-hero:hover {
+        background-color: #009db2;
+        color: #fff;
+      }
+
+      /* Responsividade */
+      @media (max-width: 991px) {
+        .hero-title {
+          font-size: 3rem;
+        }
+      }
+
+      /* Mobile: mantém sua configuração atual, limpa duplicações */
+      @media (max-width: 767px) {
+        .hero {
+          min-height: auto; /* altura depende do conteúdo */
+          padding: 0; /* zera padding */
+          margin: 0; /* zera margin */
+          background: none; /* remove background do desktop */
+          flex-direction: column; /* empilha conteúdo verticalmente */
+          text-align: center; /* centraliza texto */
+        }
+
+        /* Hero imagem mobile */
+        .hero::before {
+          content: "";
+          display: block;
+          width: 100vw; /* usa toda a largura da viewport */
+          height: 100vw; /* altura proporcional à largura */
+          background: url("img/hero_banner_mobile2.png") center / cover
+            no-repeat;
+        }
+
+        .hero-title {
+          font-size: 2rem;
+          line-height: 1.3;
+        }
+
+        .btn-hero {
+          font-size: 1rem;
+          padding: 0.6rem 1.2rem;
+        }
+      }
 
       /* Categorias e Produtos */
       .categories img,
@@ -210,20 +302,6 @@
         background-color: #fff;
         color: #000;
       }
-
-      .categories img {
-  width: 100%;
-  height: 180px;
-  object-fit: cover;
-  border-radius: 0.5rem;
-}
-
-@media (min-width: 768px) {
-  .categories img {
-    height: 220px; /* aumenta a altura em telas maiores */
-  }
-}
-
 
       /* Carrossel Marcas */
       .brands-carousel img {
@@ -254,14 +332,14 @@
   <body>
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-dark floating-navbar">
-      <div
-        class="container-fluid d-flex justify-content-between align-items-center"
-      >
-<a class="navbar-brand" href="index.html">
-  <span class="garcia-text">garciAHYpe</span>
-  <span class="store-text">Store</span>
-</a>
+      <div class="container-fluid">
+        <!-- Logo lado esquerdo -->
+        <a class="navbar-brand" href="index.html">
+          <span class="garcia-text">garciAHYpe</span>
+          <span class="store-text">Store</span>
+        </a>
 
+        <!-- Botão hamburguer no mobile -->
         <button
           class="navbar-toggler"
           type="button"
@@ -270,8 +348,23 @@
         >
           <span class="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse navbar-collapse" id="navMenu">
+
+        <!-- Itens do menu alinhados à direita -->
+        <div class="collapse navbar-collapse justify-content-end" id="navMenu">
           <ul class="navbar-nav">
+            <li class="nav-item">
+              <a class="nav-link" href="#marcas">Marcas</a>
+            </li>
+
+            <li class="nav-item">
+              <a
+                class="nav-link"
+                href="https://wa.me/5551992344888"
+                target="_blank"
+                >Contato</a
+              >
+            </li>
+
             <li class="nav-item dropdown">
               <a
                 class="nav-link dropdown-toggle"
@@ -284,14 +377,15 @@
               </a>
               <ul class="dropdown-menu dropdown-menu-dark">
                 <li>
-                  <a class="dropdown-item" href="adidassamba.html">Adidas Samba</a>
+                  <a class="dropdown-item" href="adidassamba.html"
+                    >Adidas Samba</a
+                  >
                 </li>
                 <li>
                   <a class="dropdown-item" href="adidassuperstar.html"
                     >Adidas Superstar</a
                   >
                 </li>
-
                 <li>
                   <a class="dropdown-item" href="adidasyeezy700.html"
                     >Adidas Yeezy 700</a
@@ -305,11 +399,11 @@
                     >Air Jordan 1 Low</a
                   >
                 </li>
-
-               <li>
-                <a class="dropdown-item" href="airjordan4.html">Air Jordan 4</a>
-               </li>
-
+                <li>
+                  <a class="dropdown-item" href="airjordan4.html"
+                    >Air Jordan 4</a
+                  >
+                </li>
                 <li>
                   <a class="dropdown-item" href="airmax95.html">Air Max 95</a>
                 </li>
@@ -323,13 +417,14 @@
                     >Asics Gel NYC</a
                   >
                 </li>
-
                 <li>
                   <a class="dropdown-item" href="asicsgelninbus101.html"
                     >Asics Gel Nimbus 10.1</a
                   >
                 </li>
-                <li><a class="dropdown-item" href="chinelos.html">Chinelos</a></li>
+                <li>
+                  <a class="dropdown-item" href="chinelos.html">Chinelos</a>
+                </li>
                 <li>
                   <a class="dropdown-item" href="dunksblow.html">Dunk SB Low</a>
                 </li>
@@ -339,19 +434,13 @@
                   >
                 </li>
                 <li>
-                  <a class="dropdown-item" href="nb530.html"
-                    >New Balance 530</a
-                  >
+                  <a class="dropdown-item" href="nb530.html">New Balance 530</a>
                 </li>
                 <li>
-                  <a class="dropdown-item" href="nb550.html"
-                    >New Balance 550</a
-                  >
+                  <a class="dropdown-item" href="nb550.html">New Balance 550</a>
                 </li>
                 <li>
-                  <a class="dropdown-item" href="nb740.html"
-                    >New Balance 740</a
-                  >
+                  <a class="dropdown-item" href="nb740.html">New Balance 740</a>
                 </li>
                 <li>
                   <a class="dropdown-item" href="nb9060.html"
@@ -378,66 +467,21 @@
                 </li>
               </ul>
             </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#marcas">Marcas</a>
-            </li>
-
-            <li class="nav-item"><a class="nav-link" href="#">Cupons</a></li>
-            <li class="nav-item"><a class="nav-link" href="#">Notícias</a></li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Contato</a>
-            </li>
           </ul>
-
-   <div class="collapse navbar-collapse justify-content-end" id="navMenu">         
-     <form class="d-flex me-3" role="search">
-            <input
-              class="form-control form-control-sm"
-              type="search"
-              placeholder="marcas, cor ou tamanho"
-              aria-label="Search"
-              style="background: #1a1a1a; border: none; color: #ccc"
-            />
-          </form>
-          <div class="d-flex align-items-center gap-3">
-            <i
-              class="bi bi-cart3 fs-5"
-              style="color: #ccc; cursor: pointer"
-            ></i>
-            <i class="bi bi-bell fs-5" style="color: #ccc; cursor: pointer"></i>
-            <img
-            width="30px"
-            height="30px"
-              src="img/desert.jpg"
-              alt="Usuário"
-              style="border-radius: 50%; cursor: pointer"
-            />
-            </div>
         </div>
       </div>
     </nav>
 
     <!-- Hero Banner -->
-    <section
-      class="hero d-flex align-items-center text-white"
-      style="
-        background: url('img/bckpanda.png') center center / cover no-repeat;
-        height: 100vh;
-      "
-    >
+    <section class="hero">
       <div class="container">
         <div class="row">
-          <div class="col-md-6 text-start">
-            <h1 class="display-4 fw-bold text-shadow">
-              <span class="h1dunkpanda">NIKE DUNK LOW</span> "PANDA"
-            </h1>
-            <a
-              href="dunksblow.html"
-              class="btn btn-dark btn-lg px-4 py-2 fw-semibold"
-            >
+          <!-- <div class="col-md-6 text-start">
+            <h1 class="hero-title">NIKE DUNK LOW "PANDA"</h1>
+            <a href="dunksblow.html" class="btn-hero">
               Disponível Agora <i class="bi bi-arrow-right ms-2"></i>
             </a>
-          </div>
+          </div> -->
         </div>
       </div>
     </section>
@@ -448,38 +492,32 @@
         <h2 class="mb-4">Categorias</h2>
         <div class="row text-center">
           <div class="col-6 col-md-3 mb-4">
-            <img
-              src="img/NewBalanceNB9060.jpg"
-              alt="Sneakers"
-            />
-            <p class="mt-2">Sneakers</p>
+            <a href="airmax95.html">
+              <img src="img/airmax.png" alt="Sneakers" />
+            </a>
           </div>
+
           <div class="col-6 col-md-3 mb-4">
-            <img
-              src="img/new-balance.png"
-              alt="Streetwear"
-            />
-            <p class="mt-2">Streetwear</p>
+            <a href="airjordan4.html">
+              <img src="img/jordan.png" alt="Sneakers" />
+            </a>
           </div>
+
           <div class="col-6 col-md-3 mb-4">
-            <img
-              src="https://cdn-images.farfetch-contents.com/20/03/03/18/20030318_44121494_1000.jpg"
-              alt="Luxo"
-            />
-            <p class="mt-2">Luxo</p>
+            <a href="dunksblow.html">
+              <img src="img/dunk.png" alt="Sneakers" />
+            </a>
           </div>
+
           <div class="col-6 col-md-3 mb-4">
-            <img
-              src="https://upload.wikimedia.org/wikipedia/en/thumb/e/e1/1999_Pokemon_card_Blastoise.jpg/220px-1999_Pokemon_card_Blastoise.jpg"
-              alt="Colecionáveis"
-            />
-            <p class="mt-2">Colecionáveis</p>
+            <a href="chinelos.html">
+              <img src="img/chinelo.png" alt="Sneakers" />
+            </a>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Carrossel de Marcas -->
     <section class="py-3 brands-carousel bg-dark" id="marcas">
       <div class="container d-flex flex-nowrap overflow-auto gap-4 py-3">
         <img src="img/adidas-seeklogo.png" alt="Adidas" title="Adidas" />
@@ -499,14 +537,16 @@
           <div class="col-6 col-md-4 col-lg-3">
             <div class="card product-card">
               <img
-                src="img/"
+                src="img/destaque1.jpg"
                 class="card-img-top"
                 alt="Yeezy Onyx"
               />
               <div class="card-body">
-                <h5 class="card-title">New Balance NB9060</h5>
-                <p class="card-text">R$ 1.499,00</p>
-                <a href="#" class="btn btn-outline-light btn-sm">Ver mais</a>
+                <h5 class="card-title">Nike Dunk Panda</h5>
+                <p class="card-text">R$ 480,00</p>
+                <a href="dunksblow.html" class="btn btn-outline-light btn-sm"
+                  >Ver mais</a
+                >
               </div>
             </div>
           </div>
@@ -514,14 +554,18 @@
           <div class="col-6 col-md-4 col-lg-3">
             <div class="card product-card">
               <img
-                src="https://images.stockx.com/images/Air-Jordan-1-Retro-High-OG-University-Blue-Product.jpg"
+                src="img/destaque2.jpg"
                 class="card-img-top"
                 alt="Jordan 1"
               />
               <div class="card-body">
-                <h5 class="card-title">Air Jordan 1 University Blue</h5>
-                <p class="card-text">R$ 1.799,00</p>
-                <a href="#" class="btn btn-outline-light btn-sm">Ver mais</a>
+                <h5 class="card-title">Yeezy Boost 700 V2</h5>
+                <p class="card-text">R$ 580,00</p>
+                <a
+                  href="adidasyeezy700.html"
+                  class="btn btn-outline-light btn-sm"
+                  >Ver mais</a
+                >
               </div>
             </div>
           </div>
@@ -529,14 +573,16 @@
           <div class="col-6 col-md-4 col-lg-3">
             <div class="card product-card">
               <img
-                src="https://images.stockx.com/images/Nike-Dunk-Low-Black-White-Product.jpg"
+                src="img/destaque3.jpg"
                 class="card-img-top"
                 alt="Dunk Panda"
               />
               <div class="card-body">
-                <h5 class="card-title">Nike Dunk Low Panda</h5>
-                <p class="card-text">R$ 999,00</p>
-                <a href="#" class="btn btn-outline-light btn-sm">Ver mais</a>
+                <h5 class="card-title">Air Jordan 4 Retro 'Black Cat'</h5>
+                <p class="card-text">R$ 580,00</p>
+                <a href="airjordan4.html" class="btn btn-outline-light btn-sm"
+                  >Ver mais</a
+                >
               </div>
             </div>
           </div>
@@ -544,14 +590,16 @@
           <div class="col-6 col-md-4 col-lg-3">
             <div class="card product-card">
               <img
-                src="https://images.stockx.com/images/Nike-Air-Max-Plus-TN-Triple-Black.jpg"
+                src="img/destaque4.jpg"
                 class="card-img-top"
                 alt="Air Max Plus TN"
               />
               <div class="card-body">
-                <h5 class="card-title">Air Max Plus TN Black</h5>
-                <p class="card-text">R$ 1.199,00</p>
-                <a href="#" class="btn btn-outline-light btn-sm">Ver mais</a>
+                <h5 class="card-title">Off-White Out Of Office</h5>
+                <p class="card-text">R$ 600,00</p>
+                <a href="offwhite.html" class="btn btn-outline-light btn-sm"
+                  >Ver mais</a
+                >
               </div>
             </div>
           </div>
