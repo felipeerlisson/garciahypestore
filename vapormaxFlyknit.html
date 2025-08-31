@@ -1,0 +1,807 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>GarciaHype Store</title>
+    <link rel="icon" href="img/favicon.png" type="image/x-icon">
+
+    <!-- Bootstrap 5 -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css"
+      rel="stylesheet"
+    />
+
+    <style>
+
+              /* MODAL */
+    .card { background:#1a1a1a; border:none; border-radius:1rem; color:#fff; }
+    .btn-buy { background-color:#009DB2; color:white; border:none; }
+    .btn-buy:hover { background-color:#009DB2; }
+    .price-modal {
+        color:#009DB2;
+    font-size: 2rem;
+    font-weight: 470;}
+
+
+            /* Reset e Tema dark */
+      body {
+        background-color: #0f0f0f;
+        color: #fff;
+        font-family: "Segoe UI", sans-serif;
+        margin: 0;
+        padding: 0;
+      }
+
+      /* Navbar flutuante preta com blur */
+      .floating-navbar {
+        position: fixed;
+        top: 20px;
+        left: 50%;
+        transform: translateX(-50%);
+        z-index: 1000;
+        width: 90%;
+        background: rgba(0, 0, 0, 0.7);
+        border-radius: 1rem;
+        padding: 0.5rem 1rem;
+        backdrop-filter: blur(10px);
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6);
+      }
+
+      .navbar .nav-link {
+        color: #fff !important;
+        font-weight: 500;
+      }
+
+      .navbar .nav-link:hover {
+        color: #009DB2 !important;
+      }
+
+
+      /* Layout geral: sidebar + produtos */
+      .main-container {
+        display: flex;
+        gap: 1rem;
+        max-width: 1200px;
+        margin: 8rem auto;
+        padding: 0 1rem;
+      }
+
+      /* Sidebar filtros */
+      .sidebar {
+        flex: 0 0 280px;
+        background-color: #1a1a1a;
+        border-radius: 8px;
+        padding: 1rem 1.5rem;
+        color: #aaa;
+        font-weight: 470;
+        user-select: none;
+      }
+      .sidebar h5 {
+        color: #009DB2;
+        margin-bottom: 1rem;
+      }
+      .sidebar hr {
+        border-color: #2c2c2c;
+        margin: 1rem 0;
+      }
+      .sidebar .filter-group {
+        margin-bottom: 1.5rem;
+      }
+      .sidebar .filter-label {
+        color: #ddd;
+        font-weight: 470;
+        margin-bottom: 0.5rem;
+        text-transform: uppercase;
+        font-size: 0.85rem;
+        cursor: pointer;
+      }
+
+      /* Cores filtro */
+      .color-options {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.4rem;
+      }
+      .color-box {
+        width: 26px;
+        height: 26px;
+        border-radius: 4px;
+        cursor: pointer;
+        border: 2px solid transparent;
+        transition: border-color 0.3s ease;
+      }
+      .color-box:hover,
+      .color-box.selected {
+        border-color: #009DB2;
+      }
+      /* Cores: exemplo */
+      .red {
+        background: #f44336;
+      }
+      .white {
+        background: #fff;
+      }
+      .gray {
+        background: #9e9e9e;
+      }
+      .green {
+        background: #4caf50;
+      }
+      .blue {
+        background: #2196f3;
+      }
+      .purple {
+        background: #8b1e8b;
+      }
+      .yellow {
+        background: #ffeb3b;
+      }
+      .pink {
+        background: #e91e63;
+      }
+      .black {
+        background: #000;
+      }
+
+      /* Preço */
+      .price-range input[type="number"] {
+        width: 48%;
+        padding: 0.3rem;
+        border: none;
+        border-radius: 4px;
+        background-color: #222;
+        color: #ddd;
+        font-weight: 470;
+        text-align: center;
+      }
+      .price-range input[type="number"]:focus {
+        outline: 2px solid #009DB2;
+        background-color: #2c2c2c;
+      }
+
+      /* Botão limpar */
+      .clear-filters {
+        color: #009DB2;
+        font-weight: 470;
+        cursor: pointer;
+        user-select: none;
+        margin-bottom: 1rem;
+        display: inline-block;
+        text-transform: uppercase;
+        letter-spacing: 1.2px;
+        font-size: 0.9rem;
+      }
+      .clear-filters:hover {
+        text-decoration: underline;
+      }
+
+      /* Grade de produtos */
+      .products-grid {
+        flex: 1;
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+        gap: 1rem;
+      }
+
+      /* Card produto */
+      .product-card {
+        background-color: #1c1c1c;
+        border-radius: 8px;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        cursor: pointer;
+        transition: box-shadow 0.3s ease, transform 0.3s ease;
+        box-shadow: 0 0 6px rgba(0, 0, 0, 0.4);
+      }
+      .product-card:hover {
+        box-shadow: 0 0 16px #009DB2;
+        transform: translateY(-6px);
+      }
+      .product-img {
+        width: 100%;
+        aspect-ratio: 1 / 1;
+        object-fit: contain;
+        background-color: #121212;
+        padding: 0.8rem;
+        border-bottom: 1px solid #333;
+      }
+      .product-info {
+        padding: 0.8rem 1rem;
+        flex-grow: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+      }
+      .product-title {
+        font-size: 0.95rem;
+        font-weight: 470;
+        color: #ddd;
+        margin-bottom: 0.6rem;
+        flex-grow: 1;
+      }
+      .product-price {
+        font-weight: 470;
+        font-size: 1rem;
+        color: #009DB2;
+        text-align: right;
+      }
+
+      /* Ordenar por dropdown */
+      .sort-dropdown .dropdown-toggle {
+        color: #ddd !important;
+        background-color: #1a1a1a;
+        border: none;
+        font-weight: 470;
+      }
+      .sort-dropdown .dropdown-menu {
+        background-color: #1a1a1a;
+        color: #ccc;
+      }
+      .sort-dropdown .dropdown-menu li a:hover {
+        background-color: #009DB2;
+        color: white;
+      }
+
+      /* Scroll lateral na sidebar no mobile */
+      @media (max-width: 991px) {
+        .main-container {
+          flex-direction: column;
+          padding: 1rem;
+        }
+        .sidebar {
+          width: 100%;
+          display: flex;
+          flex-wrap: wrap;
+          gap: 1rem;
+        }
+        .color-options {
+          flex-wrap: nowrap;
+          overflow-x: auto;
+          padding-bottom: 0.3rem;
+        }
+        .color-options::-webkit-scrollbar {
+          height: 6px;
+        }
+        .color-options::-webkit-scrollbar-thumb {
+          background-color: #009DB2;
+          border-radius: 3px;
+        }
+        .products-grid {
+          grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark floating-navbar">
+      <div
+        class="container-fluid d-flex justify-content-between align-items-center"
+      >
+        <a class="navbar-brand fw-bold" href="index.html">BIGJOY TESTE</a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navMenu"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navMenu">
+          <ul class="navbar-nav">
+            <li class="nav-item dropdown">
+              <a
+                class="nav-link dropdown-toggle"
+                href="#"
+                role="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                Categorias
+              </a>
+              <ul class="dropdown-menu dropdown-menu-dark">
+                <li>
+                  <a class="dropdown-item" href="flyknt.html">Adidas Samba</a>
+                </li>
+                <li>
+                  <a class="dropdown-item" href="flyknt.html"
+                    >Adidas Superstar</a
+                  >
+                </li>
+                <li>
+                  <a class="dropdown-item" href="airforce1.html">Air Force 1</a>
+                </li>
+                <li>
+                  <a class="dropdown-item" href="#air-jordan-1-low"
+                    >Air Jordan 1 Low</a
+                  >
+                </li>
+                <li>
+                  <a class="dropdown-item" href="#air-max-95">Air Max 95</a>
+                </li>
+                <li>
+                  <a class="dropdown-item" href="#asics-gel-kayano"
+                    >Asics Gel Kayano</a
+                  >
+                </li>
+                <li>
+                  <a class="dropdown-item" href="#asics-gel-nyc"
+                    >Asics Gel NYC</a
+                  >
+                </li>
+                <li><a class="dropdown-item" href="#chinelos">Chinelos</a></li>
+                <li>
+                  <a class="dropdown-item" href="#dunk-sb-low">Dunk SB Low</a>
+                </li>
+                <li><a class="dropdown-item" href="#jordan-4">Jordan 4</a></li>
+                <li>
+                  <a class="dropdown-item" href="#maison-mihara-yasuhiro"
+                    >Maison Mihara Yasuhiro</a
+                  >
+                </li>
+                <li>
+                  <a class="dropdown-item" href="#new-balance-530"
+                    >New Balance 530</a
+                  >
+                </li>
+                <li>
+                  <a class="dropdown-item" href="#new-balance-550"
+                    >New Balance 550</a
+                  >
+                </li>
+                <li>
+                  <a class="dropdown-item" href="#new-balance-740"
+                    >New Balance 740</a
+                  >
+                </li>
+                <li>
+                  <a class="dropdown-item" href="#new-balance-9060"
+                    >New Balance 9060</a
+                  >
+                </li>
+                <li>
+                  <a class="dropdown-item" href="#nike-air-max-dn"
+                    >Nike Air Max DN</a
+                  >
+                </li>
+                <li>
+                  <a class="dropdown-item" href="#nike-air-max-tn"
+                    >Nike Air Max TN</a
+                  >
+                </li>
+                <li>
+                  <a class="dropdown-item" href="#nike-air-vapormax-flyknit"
+                    >Nike Air Vapormax Flyknit</a
+                  >
+                </li>
+                <li>
+                  <a class="dropdown-item" href="#off-white">Off-White</a>
+                </li>
+              </ul>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#marcas">Marcas</a>
+            </li>
+                        
+            <li class="nav-item"><a class="nav-link" href="#">Cupons</a></li>
+            <li class="nav-item"><a class="nav-link" href="#">Notícias</a></li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Contato</a>
+            </li>
+          </ul>
+
+   <div class="collapse navbar-collapse justify-content-end" id="navMenu">         
+     <form class="d-flex me-3" role="search">
+            <input
+              class="form-control form-control-sm"
+              type="search"
+              placeholder="Drops, produtos ou marcas"
+              aria-label="Search"
+              style="background: #1a1a1a; border: none; color: #ccc"
+            />
+          </form>
+          <div class="d-flex align-items-center gap-3">
+            <i
+              class="bi bi-cart3 fs-5"
+              style="color: #ccc; cursor: pointer"
+            ></i>
+            <i class="bi bi-bell fs-5" style="color: #ccc; cursor: pointer"></i>
+            <img
+            width="30px"
+            height="30px"
+              src="img/desert.jpg"
+              alt="Usuário"
+              style="border-radius: 50%; cursor: pointer"
+            />
+            </div>
+        </div>
+      </div>
+    </nav>
+
+
+    <!-- Conteúdo principal -->
+    <div class="main-container">
+      <!-- Sidebar filtros -->
+      <aside class="sidebar">
+        <div class="clear-filters">LIMPAR</div>
+
+        <div class="filter-group">
+          <div class="filter-label">Ordenar por</div>
+          <div class="sort-dropdown dropdown">
+            <button
+              class="btn btn-sm dropdown-toggle"
+              type="button"
+              data-bs-toggle="dropdown"
+              aria-expanded="false"
+            >
+              Relevância
+            </button>
+            <ul class="dropdown-menu">
+              <li>
+                <a class="dropdown-item" href="#">Preço: menor para maior</a>
+              </li>
+              <li>
+                <a class="dropdown-item" href="#">Preço: maior para menor</a>
+              </li>
+              <li><a class="dropdown-item" href="#">Mais vendidos</a></li>
+              <li><a class="dropdown-item" href="#">Novidades</a></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="filter-group">
+          <div class="filter-label">TÊNIS</div>
+          <!-- Aqui você pode listar subfiltros ou categorias -->
+        </div>
+
+        <div class="filter-group">
+          <div class="filter-label">TAMANHOS</div>
+          <!-- Opções de tamanho -->
+        </div>
+
+        <div class="filter-group">
+          <div class="filter-label">CONDIÇÃO</div>
+          <!-- Opções condição -->
+        </div>
+
+        <div class="filter-group">
+          <div class="filter-label">MARCA</div>
+          <!-- Opções de marca -->
+        </div>
+
+        <div class="filter-group">
+          <div class="filter-label">COR</div>
+          <div class="color-options">
+            <div class="color-box red" title="Vermelho"></div>
+            <div class="color-box white" title="Branco"></div>
+            <div class="color-box gray" title="Cinza"></div>
+            <div class="color-box green" title="Verde"></div>
+            <div class="color-box blue" title="Azul"></div>
+            <div class="color-box purple" title="Roxo"></div>
+            <div class="color-box yellow" title="Amarelo"></div>
+            <div class="color-box pink" title="Rosa"></div>
+            <div class="color-box black" title="Preto"></div>
+          </div>
+        </div>
+
+        <div class="filter-group price-range">
+          <div class="filter-label">PREÇO</div>
+          <input
+            type="number"
+            min="10"
+            placeholder="Mínimo"
+            aria-label="Preço mínimo"
+          />
+          <input
+            type="number"
+            min="10"
+            placeholder="Máximo"
+            aria-label="Preço máximo"
+          />
+        </div>
+      </aside>
+
+      <!-- Grid de produtos -->
+      <section class="products-grid" aria-label="Produtos em destaque">
+
+
+        <!-- Produto 1 -->
+        <article class="product-card" tabindex="0">
+          <img
+            src="img/produtos/flyknt/tipo1.jpg"
+            alt="Nike Air Vapormax Flyknt 2019 942842-100"
+            class="product-img"
+          />
+          <div class="product-info">
+            <div class="product-title">Nike Air Vapormax Flyknt 2019 942842-100</div>
+            <div class="product-price">R$ 470</div>
+                                  <button class="btn btn-buy" 
+              data-bs-toggle="modal" 
+              data-bs-target="#modalProduto"
+              data-produto="Nike Air Vapormax Flyknt 2019 942842-100"
+              data-preco="R$ 470,00"
+              data-imagens='["img/produtos/flyknt/flyknt1ft1.jpg","img/produtos/flyknt/flyknt1ft2.jpg","img/produtos/flyknt/flyknt1ft3.jpg","img/produtos/flyknt/flyknt1ft4.jpg","img/produtos/flyknt/flyknt1ft5.jpg","img/produtos/flyknt/flyknt1ft6.jpg","img/produtos/flyknt/flyknt1ft7.jpg"]'>
+              Ver Detalhes
+            </button>
+          </div>
+        </article>
+
+        <!-- Produto 2 -->
+        <article class="product-card" tabindex="0">
+          <img
+            src="img/produtos/flyknt/tipo2.jpg"
+            alt="Nike Air Vapormax Flyknt 2019 AJ6900-102"
+            class="product-img"
+          />
+          <div class="product-info">
+            <div class="product-title">Nike Air Vapormax Flyknt 2019 AJ6900-102</div>
+            <div class="product-price">R$ 470</div>
+                                  <button class="btn btn-buy" 
+              data-bs-toggle="modal" 
+              data-bs-target="#modalProduto"
+              data-produto="Nike Air Vapormax Flyknt 2019 AJ6900-102"
+              data-preco="R$ 470,00"
+              data-imagens='["img/produtos/flyknt/flyknt2ft1.jpg","img/produtos/flyknt/flyknt2ft2.jpg","img/produtos/flyknt/flyknt2ft3.jpg","img/produtos/flyknt/flyknt2ft4.jpg","img/produtos/flyknt/flyknt2ft5.jpg","img/produtos/flyknt/flyknt2ft6.jpg","img/produtos/flyknt/flyknt2ft7.jpg"]'>
+              Ver Detalhes
+            </button>
+          </div>
+        </article>
+
+        <!-- Produto 3 -->
+        <article class="product-card" tabindex="0">
+          <img
+            src="img/produtos/flyknt/tipo3.jpg"
+            alt="Nike Air Vapormax 2019 AR6632-100"
+            class="product-img"
+          />
+          <div class="product-info">
+            <div class="product-title">
+              Nike Air Vapormax 2019 AR6632-100
+            </div>
+            <div class="product-price">R$ 470</div>
+              <button class="btn btn-buy" 
+              data-bs-toggle="modal" 
+              data-bs-target="#modalProduto"
+              data-produto="Nike Air Vapormax 2019 AR6632-100"
+              data-preco="R$ 470,00"
+              data-imagens='["img/produtos/flyknt/flyknt3ft1.jpg","img/produtos/flyknt/flyknt3ft2.jpg","img/produtos/flyknt/flyknt3ft3.jpg","img/produtos/flyknt/flyknt3ft4.jpg","img/produtos/flyknt/flyknt3ft5.jpg","img/produtos/flyknt/flyknt3ft6.jpg","img/produtos/flyknt/flyknt3ft7.jpg"]'>
+              Ver Detalhes
+            </button>
+          </div>
+        </article>
+
+        <!-- Produto 4 -->
+        <article class="product-card" tabindex="0">
+          <img
+            src="img/produtos/flyknt/tipo4.jpg"
+            alt="Nike Vapormax Flyknit 849558-007"
+            class="product-img"
+          />
+          <div class="product-info">
+            <div class="product-title">Nike Vapormax Flyknit 849558-007</div>
+            <div class="product-price">R$ 470</div>
+                                  <button class="btn btn-buy" 
+              data-bs-toggle="modal" 
+              data-bs-target="#modalProduto"
+              data-produto="Nike Vapormax Flyknit 849558-007"
+              data-preco="R$ 470,00"
+              data-imagens='["img/produtos/flyknt/flyknt4ft1.jpg","img/produtos/flyknt/flyknt4ft2.jpg","img/produtos/flyknt/flyknt4ft3.jpg","img/produtos/flyknt/flyknt4ft4.jpg","img/produtos/flyknt/flyknt4ft5.jpg","img/produtos/flyknt/flyknt4ft6.jpg","img/produtos/flyknt/flyknt4ft7.jpg"]'>
+              Ver Detalhes
+            </button>
+          </div>
+        </article>
+
+        <!-- Produto 5 -->
+        <article class="product-card" tabindex="0">
+          <img
+            src="img/produtos/flyknt/tipo5.jpg"
+            alt="Nike Air Vapormax Flyknt 2019 942842-103"
+            class="product-img"
+          />
+          <div class="product-info">
+            <div class="product-title">
+              Nike Air Vapormax Flyknt 2019 942842-103
+            </div>
+            <div class="product-price">R$ 470</div>
+                      <button class="btn btn-buy" 
+              data-bs-toggle="modal" 
+              data-bs-target="#modalProduto"
+              data-produto="Nike Air Vapormax Flyknt 2019 942842-103"
+              data-preco="R$ 470,00"
+              data-imagens='["img/produtos/flyknt/flyknt5ft1.jpg","img/produtos/flyknt/flyknt5ft2.jpg","img/produtos/flyknt/flyknt5ft3.jpg","img/produtos/flyknt/flyknt5ft4.jpg","img/produtos/flyknt/flyknt5ft5.jpg","img/produtos/flyknt/flyknt5ft6.jpg","img/produtos/flyknt/flyknt5ft7.jpg"]'>
+              Ver Detalhes
+            </button>
+          </div>
+        </article>
+
+
+
+
+        <!-- Você pode adicionar mais produtos replicando o article -->
+      </section>
+
+
+
+
+<!-- MODAL PRODUTO -->
+<div class="modal fade" id="modalProduto" tabindex="-1">
+  <div class="modal-dialog modal-xl modal-dialog-centered modal-fullscreen-sm-down">
+        <div class="modal-content bg-dark text-white">
+      <div class="modal-body">
+        <div class="row g-4">
+          <!-- info -->
+          <div class="col-12 col-md-6 order-1 order-md-2">
+            <h3 id="tituloProduto"></h3>
+            <h4 id="precoProduto" class="price-modal"></h4>
+
+            <!-- FORMULÁRIO -->
+            <input type="text" id="nome" class="form-control my-2" placeholder="Primeiro nome">
+            <input type="text" id="cpf" class="form-control my-2" placeholder="CPF">
+            <input type="email" id="email" class="form-control my-2" placeholder="E-mail">
+            <input type="tel" id="telefone" class="form-control my-2" placeholder="Telefone">
+
+            <input type="text" id="cep" class="form-control my-2" placeholder="CEP" onblur="buscarCEP()">
+            <input type="text" id="rua" class="form-control my-2" placeholder="Rua">
+            <input type="text" id="numeroCasa" class="form-control my-2" placeholder="Número">
+            <input type="text" id="complemento" class="form-control my-2" placeholder="Complemento">
+            <input type="text" id="bairro" class="form-control my-2" placeholder="Bairro">
+            <input type="text" id="cidade" class="form-control my-2" placeholder="Cidade">
+            <input type="text" id="estado" class="form-control my-2" placeholder="Estado">
+            <input type="text" id="pais" class="form-control my-2" placeholder="País">
+
+         <select id="tamanho" class="form-select my-3">
+  <option value="">Selecione o tamanho</option>
+  <option>35</option>
+  <option>36</option>
+  <option>36.5</option>
+  <option>37</option>
+  <option>38</option>
+  <option>38.5</option>
+  <option>39</option>
+  <option>40</option>
+  <option>40.5</option>
+  <option>41</option>
+  <option>42</option>
+  <option>42.5</option>
+  <option>43</option>
+  <option>44</option>
+  <option>44.5</option>
+  <option>45</option>
+</select>
+
+
+            <select id="pagamento" class="form-select my-3">
+              <option value="">Forma de pagamento</option>
+              <option>Cartão</option>
+              <option>Pix</option>
+              <option>Boleto</option>
+            </select>
+
+            <button class="btn btn-buy w-100 mt-3" onclick="enviarWhatsapp()">
+              <i class="bi bi-whatsapp"></i> Comprar via WhatsApp
+            </button>
+          </div>
+
+
+
+               <!-- IMAGENS (vem depois no mobile) -->
+          <div class="col-12 col-md-6 order-2 order-md-1">
+            <div id="galeria"></div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+  let produtoAtual = {};
+
+  // quando abre o modal
+  const modal = document.getElementById('modalProduto')
+  modal.addEventListener('show.bs.modal', event => {
+    const button = event.relatedTarget
+    produtoAtual.nome = button.getAttribute('data-produto')
+    produtoAtual.preco = button.getAttribute('data-preco')
+    produtoAtual.imagens = JSON.parse(button.getAttribute('data-imagens'))
+
+    document.getElementById('tituloProduto').textContent = produtoAtual.nome
+    document.getElementById('precoProduto').textContent = produtoAtual.preco
+
+    // monta galeria
+    const galeria = document.getElementById('galeria')
+    galeria.innerHTML = ""
+    produtoAtual.imagens.forEach(img => {
+      const image = document.createElement('img')
+      image.src = img
+      image.classList.add('img-fluid','mb-2','rounded')
+      galeria.appendChild(image)
+    })
+  })
+
+  // buscar CEP na API ViaCEP
+  function buscarCEP() {
+    const cep = document.getElementById("cep").value.replace(/\D/g, "");
+    if (cep.length !== 8) return;
+
+    fetch(`https://viacep.com.br/ws/${cep}/json/`)
+      .then(res => res.json())
+      .then(data => {
+        if (!data.erro) {
+          document.getElementById("rua").value = data.logradouro;
+          document.getElementById("bairro").value = data.bairro;
+          document.getElementById("cidade").value = data.localidade;
+          document.getElementById("estado").value = data.uf;
+          document.getElementById("pais").value = "Brasil";
+        } else {
+          alert("CEP não encontrado.");
+        }
+      })
+      .catch(() => alert("Erro ao buscar CEP."));
+  }
+
+  // enviar msg pro whatsapp
+  function enviarWhatsapp() {
+    const nome = document.getElementById("nome").value;
+    const cpf = document.getElementById("cpf").value;
+    const email = document.getElementById("email").value;
+    const telefone = document.getElementById("telefone").value;
+    const cep = document.getElementById("cep").value;
+    const rua = document.getElementById("rua").value;
+    const numeroCasa = document.getElementById("numeroCasa").value;
+    const complemento = document.getElementById("complemento").value;
+    const bairro = document.getElementById("bairro").value;
+    const cidade = document.getElementById("cidade").value;
+    const estado = document.getElementById("estado").value;
+    const pais = document.getElementById("pais").value;
+    const tamanho = document.getElementById("tamanho").value;
+    const pagamento = document.getElementById("pagamento").value;
+
+    if(!nome || !cpf || !email || !telefone || !cep || !tamanho || !pagamento) {
+      alert("Preencha todos os campos obrigatórios!");
+      return;
+    }
+
+const msg = `
+📦 *Pedido de Compra*
+
+🛍️ Produto: *${produtoAtual.nome}*  
+💲 Preço: *${produtoAtual.preco}*  
+
+👤 Nome: ${nome}  
+🆔 CPF: ${cpf}  
+📧 E-mail: ${email}  
+📞 Telefone: ${telefone}  
+
+🏠 Endereço:  
+📍 Rua: ${rua}, Nº ${numeroCasa}, ${complemento}  
+🏘️ Bairro: ${bairro}  
+🌆 Cidade: ${cidade} - ${estado}  
+📮 CEP: ${cep}  
+🌎 País: ${pais}  
+
+👟 Tamanho: ${tamanho}  
+💳 Pagamento: ${pagamento}
+`.trim();
+
+
+
+    const numero = "5551992344888"; // seu número
+    const url = `https://wa.me/${numero}?text=${encodeURIComponent(msg)}`;
+
+    window.open(url, "_blank");
+  }
+</script>
+  </body>
+</html>
